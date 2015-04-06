@@ -18,3 +18,4 @@ out/
 sched.grasp
 log
 context_switch.txt
+average.txt
