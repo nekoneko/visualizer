@@ -201,6 +201,14 @@ void serial_readwrite_task(void *pvParameters)
 	}
 }
 
+void task_1(){
+	while(1);
+}
+
+void task_2(){
+	while(1);
+}
+
 int main()
 {
 	logfile = open("log", 4);
@@ -221,30 +229,40 @@ int main()
 	serial_rx_queue = xQueueCreate(1, sizeof(serial_ch_msg));
 
 	/* Create a task to flash the LED. */
-	xTaskCreate(led_flash_task,
-	            (signed portCHAR *) "LED Flash",
-	            512 /* stack size */, NULL,
-	            tskIDLE_PRIORITY + 5, NULL);
+//	xTaskCreate(led_flash_task,
+//	            (signed portCHAR *) "LED Flash",
+//	            512 /* stack size */, NULL,
+//	            tskIDLE_PRIORITY + 5, NULL);
 
 	/* Create tasks to queue a string to be written to the RS232 port. */
-	xTaskCreate(queue_str_task1,
-	            (signed portCHAR *) "Serial Write 1",
-	            512 /* stack size */, NULL,
-	            tskIDLE_PRIORITY + 10, NULL);
-	xTaskCreate(queue_str_task2,
-	            (signed portCHAR *) "Serial Write 2",
-	            512 /* stack size */,
-	            NULL, tskIDLE_PRIORITY + 10, NULL);
+//	xTaskCreate(queue_str_task1,
+//	            (signed portCHAR *) "Serial Write 1",
+//	            512 /* stack size */, NULL,
+//	            tskIDLE_PRIORITY + 10, NULL);
+//	xTaskCreate(queue_str_task2,
+//	            (signed portCHAR *) "Serial Write 2",
+//	            512 /* stack size */,
+//	            NULL, tskIDLE_PRIORITY + 10, NULL);
 
 	/* Create a task to write messages from the queue to the RS232 port. */
-	xTaskCreate(rs232_xmit_msg_task,
-	            (signed portCHAR *) "Serial Xmit Str",
-	            512 /* stack size */, NULL, tskIDLE_PRIORITY + 2, NULL);
+//	xTaskCreate(rs232_xmit_msg_task,
+//	            (signed portCHAR *) "Serial Xmit Str",
+//	            512 /* stack size */, NULL, tskIDLE_PRIORITY + 2, NULL);
 
 	/* Create a task to receive characters from the RS232 port and echo
 	 * them back to the RS232 port. */
-	xTaskCreate(serial_readwrite_task,
-	            (signed portCHAR *) "Serial Read/Write",
+//	xTaskCreate(serial_readwrite_task,
+//	            (signed portCHAR *) "Serial Read/Write",
+//	            512 /* stack size */, NULL,
+//	            tskIDLE_PRIORITY + 10, NULL);
+
+	xTaskCreate(task_1,
+	            (signed portCHAR *) "task_1",
+	            512 /* stack size */, NULL,
+	            tskIDLE_PRIORITY + 10, NULL);
+
+	xTaskCreate(task_2,
+	            (signed portCHAR *) "task_2",
 	            512 /* stack size */, NULL,
 	            tskIDLE_PRIORITY + 10, NULL);
 
