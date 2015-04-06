@@ -408,6 +408,13 @@ void trace_task_switch(void *prev_task,
 	                   xTaskGetTickCount(), get_reload(),
 	                   prev_tick, get_current());
 	write(logfile, buf, len);
+
+	//float in_time, out_time;
+	//out_time = (xTaskGetTickCount()+(get_reload()-prev_tick)/get_reload())*10000;
+	//in_time = (xTaskGetTickCount()+(get_reload()-get_current())/get_reload())*10000;
+	//len = snprintf(buf, 128, "context switch %f\n",
+	//					in_time - out_time);
+	//write(logfile, buf, len);
 }
 
 void trace_create_mutex(void *mutex)
