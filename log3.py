@@ -13,7 +13,7 @@ lines = log.readlines()
 width = 13
 count = 1
 interval = 0.0
-string = "{:>{width}}{:>{width}}{:>{width}}\n".format('#id','10_digit','6_digit',width=width)
+string = "{:>{width}}{:>{width}}{:>{width}}\n".format('#id','6_digit','10_digit',width=width)
 fileout.write(bytes(string,'UTF-8'))
 
 for line in lines :
